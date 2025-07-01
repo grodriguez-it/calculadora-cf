@@ -1,0 +1,16 @@
+name: Compila y Genera PDF
+on:
+  push:
+
+jobs:
+  compila:
+   runs-on: ubuntu-lastest
+
+   steps:
+   - name: Tener copia local del repo
+     uses: actions/checkout@v4.2.2
+
+   - name: Instalar .NET en el runner
+     uses: actions/setup-dotnet@v4
+     with:
+       dotnet-version: '9.0.x'
