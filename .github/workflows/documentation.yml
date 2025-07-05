@@ -8,6 +8,11 @@ jobs:
    name: Cargar, Instalar y Compilar
 
    steps:
+      - name: Saludar
+        uses: grodriguez-it/hello-word-jsactions@v1.0
+        with:
+          who-to-greet: Gustavo
+       
       - name: Tener copia local del repo
         uses: actions/checkout@v4
   
