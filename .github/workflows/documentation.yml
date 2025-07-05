@@ -7,7 +7,6 @@ jobs:
    runs-on: ubuntu-latest
    name: Cargar, Instalar y Compilar
 
-
    steps:
       - name: Hello World GRodriguez
         uses: grodriguez-it/hello-word-jsactions@v1.0
