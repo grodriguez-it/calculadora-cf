@@ -11,7 +11,7 @@ jobs:
       - name: Hello World GRodriguez
         uses: grodriguez-it/hello-word-jsactions@v1.0
         with:
-          who-to-greet: Gustavo
+          who-to-greet: Gustavo 
        
       - name: Tener copia local del repo
         uses: actions/checkout@v4
