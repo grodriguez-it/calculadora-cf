@@ -8,7 +8,7 @@ jobs:
    name: Cargar, Instalar y Compilar
 
    steps:
-      - name: Saludar
+      - name: Hello World GRodriguez
         uses: grodriguez-it/hello-word-jsactions@v1.0
         with:
           who-to-greet: Gustavo
