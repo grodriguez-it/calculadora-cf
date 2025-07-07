@@ -1,0 +1,48 @@
+name: .NET Restore, Build, Run and Test
+
+on:
+  workflow_call:
+    inputs:
+      project-path:
+        description: Ruta del proyecto .csproj (opcional)
+        required: false
+        default: ""
+        type: string
+      run-app:
+        description: Si se debe ejecutar `dotnet run` (true/false)
+        required: false
+        default: "false"
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ inputs.project-path }}
+
+      - name: Build
+        run: dotnet build ${{ inputs.project-path }} --no-restore --configuration Release
+
+      - name: Run (optional)
+        if: ${{ inputs.run-app == 'true' }}
+        run: dotnet run --no-build --configuration Release --project ${{ inputs.project-path }}
+
+      - name: Test
+        run: dotnet test ${{ inputs.project-path }} --no-build --configuration Release --logger trx
+
+      - name: Upload test results
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/TestResults/*.trx'
